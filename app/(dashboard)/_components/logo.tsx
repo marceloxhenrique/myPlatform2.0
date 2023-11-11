@@ -1,12 +1,6 @@
 import Image from "next/image";
 export const Logo = () => {
   return (
-    <Image
-      height={130}
-      width={130}
-      alt="logo"
-      src="/logo.png
-  "
-    />
+    <h1 className="text-2xl text-emerald-800 font-semibold">MyPlatform</h1>
   );
 };
