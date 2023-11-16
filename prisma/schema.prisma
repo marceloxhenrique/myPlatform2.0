@@ -11,16 +11,26 @@ datasource db {
 }
 
 model Course {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  description     String   @db.VarChar(255)
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updateAt DateTime @updatedAt @db.Timestamp(6)
-  coverImagePath String @db.VarChar(255)
-  
-  
-  
+  id             Int      @id @default(autoincrement())
+  title          String   @db.VarChar(255)
+  description    String   @db.VarChar(255)
+  createdAt      DateTime @default(now()) @db.Timestamp(6)
+  updateAt       DateTime @updatedAt @db.Timestamp(6)
+  coverImagePath String   @db.VarChar(255)
 
-
+  lessons         Lesson[]
 }
 
+model Lesson {
+  id             Int      @id @default(autoincrement())
+  title          String   @db.VarChar(255)
+  description    String   @db.VarChar(255)
+  createdAt      DateTime @default(now()) @db.Timestamp(6)
+  updateAt       DateTime @updatedAt @db.Timestamp(6)
+  coverImagePath String   @db.VarChar(255)
+  videoPath      String   @db.VarChar(255)
+  courseId       Int
+
+  course Course @relation(fields: [courseId], references: [id])
+
+}
