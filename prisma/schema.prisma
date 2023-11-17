@@ -11,26 +11,43 @@ datasource db {
 }
 
 model Course {
-  id             Int      @id @default(autoincrement())
+  id             String   @id @default(uuid())
   title          String   @db.VarChar(255)
-  description    String   @db.VarChar(255)
+  description    String   @db.Text
   createdAt      DateTime @default(now()) @db.Timestamp(6)
   updateAt       DateTime @updatedAt @db.Timestamp(6)
   coverImagePath String   @db.VarChar(255)
+  isPublishsed   Boolean  @default(false)
 
-  lessons         Lesson[]
+  lessons  Lesson[]
+  Purchase Purchase[]
+
+  @@map("course")
 }
 
 model Lesson {
   id             Int      @id @default(autoincrement())
   title          String   @db.VarChar(255)
-  description    String   @db.VarChar(255)
+  description    String   @db.Text
   createdAt      DateTime @default(now()) @db.Timestamp(6)
   updateAt       DateTime @updatedAt @db.Timestamp(6)
   coverImagePath String   @db.VarChar(255)
   videoPath      String   @db.VarChar(255)
-  courseId       Int
+  courseId       String
+  isPublishsed   Boolean  @default(false)
 
   course Course @relation(fields: [courseId], references: [id])
 
+  @@map("lesson")
+}
+
+model Purchase {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+  @@map("purchase")
 }
