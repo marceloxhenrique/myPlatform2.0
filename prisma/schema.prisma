@@ -11,13 +11,13 @@ datasource db {
 }
 
 model Course {
-  id             String   @id @default(uuid())
-  title          String   @db.VarChar(255)
-  description    String   @db.Text
-  createdAt      DateTime @default(now()) @db.Timestamp(6)
-  updateAt       DateTime @updatedAt @db.Timestamp(6)
-  coverImagePath String   @db.VarChar(255)
-  isPublishsed   Boolean  @default(false)
+  id           String   @id @default(uuid())
+  title        String   @db.Text
+  description  String   @db.Text
+  createdAt    DateTime @default(now()) @db.Timestamp(6)
+  updateAt     DateTime @updatedAt @db.Timestamp(6)
+  imageUrl     String   @db.Text
+  isPublishsed Boolean  @default(false)
 
   lessons  Lesson[]
   Purchase Purchase[]
@@ -26,15 +26,14 @@ model Course {
 }
 
 model Lesson {
-  id             String   @id @default(uuid())
-  title          String   @db.VarChar(255)
-  description    String   @db.Text
-  createdAt      DateTime @default(now()) @db.Timestamp(6)
-  updateAt       DateTime @updatedAt @db.Timestamp(6)
-  coverImagePath String   @db.VarChar(255)
-  videoPath      String   @db.VarChar(255)
-  courseId       String
-  isPublishsed   Boolean  @default(false)
+  id           String   @id @default(uuid())
+  title        String   @db.Text
+  description  String   @db.Text
+  createdAt    DateTime @default(now()) @db.Timestamp(6)
+  updateAt     DateTime @updatedAt @db.Timestamp(6)
+  videoUrl     String   @db.Text
+  courseId     String
+  isPublishsed Boolean  @default(false)
 
   course Course @relation(fields: [courseId], references: [id])
 
