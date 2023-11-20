@@ -13,7 +13,7 @@ const guestRoutes = [
   {
     icon: BookOpenText,
     label: "Courses",
-    href: "/course/courses",
+    href: "/courses",
   },
 ];
 
@@ -26,12 +26,12 @@ const teacherRoutes = [
   {
     icon: BookOpenText,
     label: "Courses",
-    href: "/course/courses",
+    href: "/courses",
   },
   {
     icon: PencilRuler,
     label: "Create",
-    href: "/course/create",
+    href: "/create",
   },
 ];
 const isTeacher = process.env.NEXT_PUBLIC_TEACHER_ID;
