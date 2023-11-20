@@ -3,7 +3,14 @@ const prisma = new PrismaClient();
 export async function getCourse() {
   const courses = await prisma.course.findMany({
     where: {
-      isPublishsed: false,
+      isPublished: false,
+    },
+    include: {
+      lessons: {
+        where: {
+          isPublished: true,
+        },
+      },
     },
   });
 
