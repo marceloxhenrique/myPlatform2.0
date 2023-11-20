@@ -6,7 +6,7 @@ CREATE TABLE "course" (
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(6) NOT NULL,
     "coverImagePath" VARCHAR(255) NOT NULL,
-    "isPublishsed" BOOLEAN NOT NULL DEFAULT false,
+    "isPublished" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "course_pkey" PRIMARY KEY ("id")
 );
@@ -21,7 +21,7 @@ CREATE TABLE "lesson" (
     "coverImagePath" VARCHAR(255) NOT NULL,
     "videoPath" VARCHAR(255) NOT NULL,
     "courseId" TEXT NOT NULL,
-    "isPublishsed" BOOLEAN NOT NULL DEFAULT false,
+    "isPublished" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "lesson_pkey" PRIMARY KEY ("id")
 );
