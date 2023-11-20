@@ -1,6 +1,9 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { getCourse } from "@/actions/getCourses";
-import { CourseCard } from "./_components/courseCard";
-export default async function Home() {
+import { CourseCard } from "../../_components/courseCard";
+
+const CoursePage = async () => {
   const courses = await getCourse();
   return (
     <main className="h-full w-full p-4">
@@ -17,4 +20,6 @@ export default async function Home() {
       </section>
     </main>
   );
-}
+};
+
+export default CoursePage;
