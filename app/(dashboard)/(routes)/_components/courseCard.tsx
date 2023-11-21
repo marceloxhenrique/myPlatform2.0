@@ -22,7 +22,7 @@ export function CourseCard({
 }: // imageUrl,
 CourseProps) {
   return (
-    <section className="min-w-[10rem] max-w-md h-72 p-2 hover:bg-slate-100 flex flex-col rounded-md cursor-pointer border-2 border-slate-100  m-2">
+    <section className="min-w-[10rem] max-w-xl h-72 p-2 hover:bg-slate-100 flex flex-col rounded-md cursor-pointer border-2 border-slate-100  m-2">
       <section className=" w-full h-64 rounded-md bg-black">.</section>
       <section className="  rounded-b-md">
         <h1 className="my-4 text-black font-medium text-xl">{title}</h1>
