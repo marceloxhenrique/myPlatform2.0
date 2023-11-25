@@ -30,18 +30,20 @@ const teacherRoutes = [
   },
   {
     icon: PencilRuler,
-    label: "Create",
-    href: "/create",
+    label: "Teacher",
+    href: "/teacher",
   },
 ];
-const isTeacher = process.env.NEXT_PUBLIC_TEACHER_ID;
+
+const isTeacher1 = process.env.NEXT_PUBLIC_TEACHER_ID1;
+const isTeacher2 = process.env.NEXT_PUBLIC_TEACHER_ID2;
 
 export const SidebarRoutes = () => {
   const { userId } = useAuth();
 
   return (
     <div className="flex flex-col w-full">
-      {userId === isTeacher
+      {userId === isTeacher1 || isTeacher2
         ? teacherRoutes.map((route) => (
             <SidebarItem
               key={route.href}
