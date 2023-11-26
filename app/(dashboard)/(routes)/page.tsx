@@ -1,6 +1,6 @@
 import { getCourse } from "@/actions/getCourses";
 import { CourseCard } from "./_components/courseCard";
-export default async function Home() {
+export default async function Dashboard() {
   const courses = await getCourse();
   return (
     <main className="h-full w-full p-4">
