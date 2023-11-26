@@ -1,10 +1,19 @@
 "use client";
 
-import { BookOpenText, Layout, PencilRuler } from "lucide-react";
+import { BookOpenText, Layout, LucideIcon, PencilRuler } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { useAuth } from "@clerk/nextjs";
+import { FC } from "react";
 
-const guestRoutes = [
+type SidebarRoute = {
+  icon: LucideIcon;
+  label: string;
+  href: string;
+};
+
+type SidebarRoutes = SidebarRoute[];
+
+const guestRoutes: SidebarRoutes = [
   {
     icon: Layout,
     label: "Dashboard",
@@ -17,7 +26,7 @@ const guestRoutes = [
   },
 ];
 
-const teacherRoutes = [
+const teacherRoutes: SidebarRoutes = [
   {
     icon: Layout,
     label: "Dashboard",
@@ -35,31 +44,25 @@ const teacherRoutes = [
   },
 ];
 
-const isTeacher1 = process.env.NEXT_PUBLIC_TEACHER_ID1;
-const isTeacher2 = process.env.NEXT_PUBLIC_TEACHER_ID2;
-
-export const SidebarRoutes = () => {
+export const SidebarRoutes: FC = () => {
   const { userId } = useAuth();
+
+  const isTeacher1: string | undefined = process.env.NEXT_PUBLIC_TEACHER_ID1;
+  const isTeacher2: string | undefined = process.env.NEXT_PUBLIC_TEACHER_ID2;
+  const isTeacher = userId === isTeacher1 || userId === isTeacher2;
+
+  const routes: SidebarRoutes = isTeacher ? teacherRoutes : guestRoutes;
 
   return (
     <div className="flex flex-col w-full">
-      {userId === isTeacher1 || isTeacher2
-        ? teacherRoutes.map((route) => (
-            <SidebarItem
-              key={route.href}
-              icon={route.icon}
-              label={route.label}
-              href={route.href}
-            />
-          ))
-        : guestRoutes.map((route) => (
-            <SidebarItem
-              key={route.href}
-              icon={route.icon}
-              label={route.label}
-              href={route.href}
-            />
-          ))}
+      {routes.map((route) => (
+        <SidebarItem
+          key={route.href}
+          icon={route.icon}
+          label={route.label}
+          href={route.href}
+        />
+      ))}
     </div>
   );
 };
