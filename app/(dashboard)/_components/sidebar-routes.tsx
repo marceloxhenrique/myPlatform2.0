@@ -4,6 +4,7 @@ import { BookOpenText, Layout, LucideIcon, PencilRuler } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { useAuth } from "@clerk/nextjs";
 import { FC } from "react";
+import { isTeacher } from "@/lib/isTeacher";
 
 type SidebarRoute = {
   icon: LucideIcon;
@@ -47,11 +48,7 @@ const teacherRoutes: SidebarRoutes = [
 export const SidebarRoutes: FC = () => {
   const { userId } = useAuth();
 
-  const isTeacher1: string | undefined = process.env.NEXT_PUBLIC_TEACHER_ID1;
-  const isTeacher2: string | undefined = process.env.NEXT_PUBLIC_TEACHER_ID2;
-  const isTeacher = userId === isTeacher1 || userId === isTeacher2;
-
-  const routes: SidebarRoutes = isTeacher ? teacherRoutes : guestRoutes;
+  const routes = isTeacher(userId) ? teacherRoutes : guestRoutes;
 
   return (
     <div className="flex flex-col w-full">
