@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getCourse } from "@/actions/getCourses";
-import { CourseCard } from "../../_components/courseCard";
+import { CourseCard } from "../_components/courseCard";
 
 const CoursePage = async () => {
   const courses = await getCourse();
