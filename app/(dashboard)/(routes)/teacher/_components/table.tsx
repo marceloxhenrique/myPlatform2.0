@@ -10,8 +10,13 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-
-const CoursesTable = () => {
+type CourseDataProps = {
+  title: string;
+  status: boolean;
+  lessons: number;
+};
+import PopOver from "./popoverEdit";
+const CoursesTable = ({ title, status, lessons }: CourseDataProps) => {
   const router = useRouter();
   const onClick = () => {
     router.push("/teacher/create");
@@ -37,7 +42,9 @@ const CoursesTable = () => {
             <TableCell className="font-medium">HTML5</TableCell>
             <TableCell className="text-center">Publised</TableCell>
             <TableCell className="text-center">5</TableCell>
-            <TableCell className="text-right">...</TableCell>
+            <TableCell className="text-center ">
+              <PopOver />
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
