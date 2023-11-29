@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { db } from "@/lib/db";
 export async function getAllCourse() {
-  const courses = await prisma.course.findMany({
+  const courses = await db.course.findMany({
     include: {
       lessons: true,
     },

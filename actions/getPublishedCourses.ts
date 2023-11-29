@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { db } from "@/lib/db";
 export async function getPublishedCourse() {
-  const courses = await prisma.course.findMany({
+  const courses = await db.course.findMany({
     where: {
       isPublished: true,
     },

@@ -1,4 +1,3 @@
-// "use client";
 import { Course } from "@/lib/types";
 import { TableCell, TableRow } from "@/components/ui/table";
 import PopOver from "./popoverEdit";
