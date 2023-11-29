@@ -1,6 +1,6 @@
 import CoursesTable from "./_components/table";
 import { getAllCourse } from "@/actions/getAllCourses";
-import { Button } from "@/components/ui/button";
+import NewCourseButton from "./_components/newCourseButton";
 import {
   Table,
   TableBody,
@@ -12,12 +12,10 @@ import {
 
 const TeacherPage = async () => {
   const courses = await getAllCourse();
-  console.log(courses);
+
   return (
     <>
-      <section className="flex justify-end">
-        <Button className="bg-green-700 hover:bg-green-600">New Course</Button>
-      </section>
+      <NewCourseButton />
       <Table>
         <TableCaption>A list of your Courses.</TableCaption>
         <TableHeader>

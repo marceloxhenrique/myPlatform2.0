@@ -9,6 +9,5 @@ export async function getPublishedCourse() {
       lessons: true,
     },
   });
-  // console.log(courses);
   return courses;
 }
