@@ -27,3 +27,8 @@ export type Course = {
   isPublished: Boolean;
   lessons: Lessons[];
 };
+
+export type FormCreateCourseProps = {
+  title: string;
+  description: string;
+};
