@@ -20,7 +20,7 @@ const TeacherPage = async () => {
         <TableCaption>A list of your Courses.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Title</TableHead>
+            <TableHead className="text-left">Title</TableHead>
             <TableHead className="text-center">Status</TableHead>
             <TableHead className="text-center">Lessons</TableHead>
           </TableRow>
