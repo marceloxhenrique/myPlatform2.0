@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import { UploadButton, UploadDropzone } from "@/lib/uploadthing";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import Link from "next/link";
@@ -6,8 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 import { UploadCloud } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,8 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-import { Textarea } from "@/components/ui/textarea";
+import { UploadFileResponse } from "uploadthing/client";
 
 const createCourseFormSchema = z.object({
   title: z
@@ -62,15 +63,14 @@ const createCourseFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof createCourseFormSchema>;
 
-export default function CreateCourse({
-  params,
-}: {
-  params: { course: string };
-}) {
-  const form = useForm<ProfileFormValues>({
+export default function CreateCourse() {
+  const [newImageUrl, setNewImageUrl] = useState<
+    UploadFileResponse<null>[] | undefined
+  >();
+  const params = useParams();
+  const form = useForm<z.infer<typeof createCourseFormSchema>>({
     resolver: zodResolver(createCourseFormSchema),
     defaultValues: {
-      title: "",
       description: "",
       imageUrl: "",
       // lessons: [],
@@ -79,14 +79,12 @@ export default function CreateCourse({
   });
 
   async function onSubmit(data: ProfileFormValues) {
-    console.log(data);
-    // const { title } = createCourseFormSchema.parse(data);
-    // const res = await axios.post("/api/courses", data);
-
-    // console.log(res);
-    // console.log(data.description);
+    if (newImageUrl) {
+      const newData = { ...data, imageUrl: newImageUrl[0].key };
+      const res = await axios.post("/api/courses", newData);
+      console.log(res);
+    }
   }
-
   return (
     <section className=" w-full h-full flex flex-col lg:flex-row ">
       <Form {...form}>
@@ -104,7 +102,7 @@ export default function CreateCourse({
                   <FormControl>
                     <Input
                       placeholder="Course name"
-                      defaultValue={params?.course}
+                      defaultValue={params.create[1]}
                       {...field}
                     />
                   </FormControl>
@@ -144,17 +142,23 @@ export default function CreateCourse({
               name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="py-8 border-dashed border-2 border-slate-400    grid place-items-center cursor-pointer rounded-md ">
-                    <UploadCloud /> Upload a file
-                  </FormLabel>
+                  {/* <FormLabel className="py-8 border-dashed border-2 border-slate-400    grid place-items-center cursor-pointer rounded-md "> */}
+                  {/* <UploadCloud /> Upload a file */}
+                  {/* </FormLabel> */}
                   <FormControl>
-                    <Input
-                      className="sr-only"
-                      type="file"
-                      placeholder="Course name"
-                      defaultValue={params?.course}
+                    <UploadDropzone
                       {...field}
-                    />
+                      endpoint="imageUploader"
+                      onClientUploadComplete={(res) => {
+                        setNewImageUrl(res);
+                        console.log("Files: ", res);
+                        alert("TRUpload Completed");
+                      }}
+                      onUploadError={(error: Error) => {
+                        // Do something with the error.
+                        alert(`TRERROR! ${error.message}`);
+                      }}
+                    ></UploadDropzone>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -164,7 +168,7 @@ export default function CreateCourse({
           <Button type="submit">Update profile</Button>
         </form>
       </Form>
-      <div className="bg-yellow-400 flex-1 grid place-items-center">aze</div>
+      <div className="bg-yellow-400 flex-1 grid place-items-center"></div>
     </section>
   );
 }
