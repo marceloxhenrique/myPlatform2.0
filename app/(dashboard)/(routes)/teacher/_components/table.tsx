@@ -10,7 +10,9 @@ const CoursesTable = ({ courses }: CoursesTableProps) => {
     <>
       {courses.map((course: Course) => (
         <TableRow key={+course.id}>
-          <TableCell className="font-medium">{course.title}</TableCell>
+          <TableCell className="font-medium max-w-[5rem]">
+            {course.title}
+          </TableCell>
           <TableCell className="text-center">
             {course.isPublished ? (
               <p className="py-1 px-2 rounded-lg inline-block bg-emerald-500">

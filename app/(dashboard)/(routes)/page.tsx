@@ -1,5 +1,5 @@
 import { getPublishedCourse } from "@/actions/getPublishedCourses";
-import { CourseCard } from "./_components/courseCard";
+import { CourseCard } from "./courses/_components/courseCard";
 export default async function Dashboard() {
   const courses = await getPublishedCourse();
   return (
