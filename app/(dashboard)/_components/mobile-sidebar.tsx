@@ -6,12 +6,12 @@ export const MobileSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger
-        className="md:hidden pr-4 hover:opacity-75 transition"
+        className="pr-4 transition hover:opacity-75 md:hidden"
         aria-controls="radix-:R2mpj9:"
       >
         <Menu />
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 bg-white">
+      <SheetContent side="left" className="bg-white p-0">
         <Sidebar />
       </SheetContent>
     </Sheet>

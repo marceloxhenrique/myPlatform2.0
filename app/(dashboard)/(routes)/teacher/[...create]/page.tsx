@@ -9,6 +9,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 import { UploadCloud } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -64,13 +65,16 @@ const createCourseFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof createCourseFormSchema>;
 
 export default function CreateCourse() {
+  const params = useParams();
+  const [para, setPara] = useState(params.create[1]);
   const [newImageUrl, setNewImageUrl] = useState<
     UploadFileResponse<null>[] | undefined
   >();
-  const params = useParams();
+
   const form = useForm<z.infer<typeof createCourseFormSchema>>({
     resolver: zodResolver(createCourseFormSchema),
     defaultValues: {
+      title: para,
       description: "",
       imageUrl: "",
       // lessons: [],
@@ -80,8 +84,10 @@ export default function CreateCourse() {
 
   async function onSubmit(data: ProfileFormValues) {
     if (newImageUrl) {
-      const newData = { ...data, imageUrl: newImageUrl[0].key };
+      console.log(newImageUrl[0].url);
+      const newData = { ...data, imageUrl: newImageUrl[0].url };
       const res = await axios.post("/api/courses", newData);
+      form.reset();
       console.log(res);
     }
   }
@@ -102,7 +108,7 @@ export default function CreateCourse() {
                   <FormControl>
                     <Input
                       placeholder="Course name"
-                      defaultValue={params.create[1]}
+                      defaultValue={para}
                       {...field}
                     />
                   </FormControl>
