@@ -13,10 +13,10 @@ datasource db {
 model Course {
   id          String   @id @default(uuid())
   title       String   @unique @db.Text
-  description String   @db.Text
+  description String?  @db.Text
   createdAt   DateTime @default(now()) @db.Timestamp(6)
   updateAt    DateTime @updatedAt @db.Timestamp(6)
-  imageUrl    String   @db.Text
+  imageUrl    String?  @db.Text
   isPublished Boolean  @default(false)
 
   lessons  Lesson[]
