@@ -1,11 +1,11 @@
 -- CreateTable
 CREATE TABLE "course" (
     "id" TEXT NOT NULL,
-    "title" VARCHAR(255) NOT NULL,
-    "description" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT,
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(6) NOT NULL,
-    "coverImagePath" VARCHAR(255) NOT NULL,
+    "imageUrl" TEXT,
     "isPublished" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "course_pkey" PRIMARY KEY ("id")
@@ -13,13 +13,12 @@ CREATE TABLE "course" (
 
 -- CreateTable
 CREATE TABLE "lesson" (
-    "id" SERIAL NOT NULL,
-    "title" VARCHAR(255) NOT NULL,
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(6) NOT NULL,
-    "coverImagePath" VARCHAR(255) NOT NULL,
-    "videoPath" VARCHAR(255) NOT NULL,
+    "videoUrl" TEXT NOT NULL,
     "courseId" TEXT NOT NULL,
     "isPublished" BOOLEAN NOT NULL DEFAULT false,
 
@@ -35,6 +34,9 @@ CREATE TABLE "purchase" (
 
     CONSTRAINT "purchase_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "course_title_key" ON "course"("title");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "purchase_userId_courseId_key" ON "purchase"("userId", "courseId");
