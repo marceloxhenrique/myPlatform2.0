@@ -16,7 +16,7 @@ model Course {
   description String?  @db.Text
   createdAt   DateTime @default(now()) @db.Timestamp(6)
   updateAt    DateTime @updatedAt @db.Timestamp(6)
-  imageUrl    String?  @db.Text
+  imageUrl    String?  @default("https://utfs.io/f/134c762c-51ef-4810-ae3f-c660fee91014-223acx.png") @db.Text
   isPublished Boolean  @default(false)
 
   lessons  Lesson[]
