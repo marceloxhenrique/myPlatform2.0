@@ -13,7 +13,7 @@ const CoursePage = async () => {
             id={course.id}
             lessons={course.lessons}
             isPublished={course.isPublished}
-            imageUrl={course.imageUrl}
+            imageUrl={course.imageUrl!}
           />
         ))}
       </section>

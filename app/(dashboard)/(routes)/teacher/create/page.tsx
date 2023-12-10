@@ -47,7 +47,12 @@ export default function CreateCourse() {
       form.reset();
       router.push(`/teacher/course/${data.title}`);
     } catch (error) {
-      toast.error(`Oops something went wrong`);
+      if (axios.isAxiosError(error) && error.response) {
+        console.log(error.response.data.error);
+        toast.error(`${error.response.data.error}`);
+      } else {
+        toast.error("An Error occurred");
+      }
     }
   }
   return (
