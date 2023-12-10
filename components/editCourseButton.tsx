@@ -1,13 +1,26 @@
+"use client";
+import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-type SomethingProps = {
+type EditCourseProps = {
   icon: ReactNode;
   title: string;
+  courseTitle: String;
 };
-export const EditCourseButton = ({ icon, title }: SomethingProps) => {
+export const EditCourseButton = ({
+  icon,
+  title,
+  courseTitle,
+}: EditCourseProps) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/teacher/course/${courseTitle}`);
+  };
   return (
-    <button className="w-full h-full flex flex-row items-center p-3 gap-2 bg-slate-300 rounded-sm hover:bg-slate-400">
+    <button
+      onClick={handleClick}
+      className="flex h-full w-full flex-row items-center gap-3 rounded-sm bg-slate-300 p-3 hover:bg-slate-400"
+    >
       <span className="">{icon}</span>
-
       {title}
     </button>
   );

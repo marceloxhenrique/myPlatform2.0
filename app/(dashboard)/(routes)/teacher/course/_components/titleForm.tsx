@@ -27,7 +27,6 @@ const createCourseTitleFormSchema = z.object({
     .max(30, {
       message: "Title must not be longer than 30 characters.",
     }),
-  
 });
 
 type ProfileFormValues = z.infer<typeof createCourseTitleFormSchema>;
@@ -46,38 +45,32 @@ export default function TitleForm() {
   });
 
   async function onSubmit(data: ProfileFormValues) {
-      const res = await axios.post("/api/courses", data);
-      form.reset();
-      console.log(res);
+    const res = await axios.post("/api/courses", data);
+    form.reset();
+    console.log(res);
   }
   return (
-    
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-        >
-          <section className="bg-slate-200 p-4 rounded-md">
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Course Title</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Course name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    What are you gonig to teach in this course?
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </section>
-        </form>
-      </Form>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <section className="rounded-md bg-slate-200 p-4 px-5 py-2 ">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Course Title</FormLabel>
+                <FormControl>
+                  <Input placeholder="Course name" {...field} />
+                </FormControl>
+                <FormDescription>
+                  What are you gonig to teach in this course?
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </section>
+      </form>
+    </Form>
   );
 }

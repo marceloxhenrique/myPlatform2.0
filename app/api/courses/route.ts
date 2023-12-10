@@ -1,26 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { db as Prisma } from "@/lib/db";
 
-const prisma = new PrismaClient();
 export async function POST(request: NextRequest) {
-  const { title, description, imageUrl } = await request.json();
-  if (!title || !description || !imageUrl) {
+  const { title } = await request.json();
+  if (!title) {
     return NextResponse.json({ error: "Invalid data" }, { status: 404 });
   }
 
-  const isCourseExist = await prisma.course.findUnique({
+  const isCourseExist = await Prisma.course.findUnique({
     where: {
       title: title,
     },
   });
   if (isCourseExist) {
-    return NextResponse.json({ error: "Course Alredy exist" }, { status: 400 });
+    return NextResponse.json(
+      { error: "A Course with the same name already exist" },
+      { status: 400 },
+    );
   }
-  await prisma.course.create({
+  await Prisma.course.create({
     data: {
       title: title,
-      description: description,
-      imageUrl: imageUrl,
     },
   });
 

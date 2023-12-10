@@ -1,3 +1,4 @@
+import DeleteCourseButton from "@/components/deleteCourseButton";
 import { EditCourseButton } from "@/components/editCourseButton";
 import {
   Popover,
@@ -5,15 +6,31 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Pencil, Trash2 } from "lucide-react";
-const PopOver = () => {
+const PopOver = ({
+  courseId,
+  courseTitle,
+}: {
+  courseId: string;
+  courseTitle: string;
+}) => {
   return (
     <Popover>
       <PopoverTrigger className="text-2xl" aria-controls="radix-:R47jcrbdmcq:">
         ...
       </PopoverTrigger>
       <PopoverContent className="flex flex-col justify-items-start gap-2">
-        <EditCourseButton title="Edit" icon={<Pencil />} />
-        <EditCourseButton title="Delete" icon={<Trash2 />} />
+        <EditCourseButton
+          courseTitle={courseTitle}
+          title="Edit"
+          icon={<Pencil />}
+        />
+        <section className="flex h-full w-full flex-row items-center gap-2 rounded-sm bg-slate-300 hover:bg-slate-400">
+          <DeleteCourseButton
+            icon={<Trash2 />}
+            courseId={courseId}
+            courseTitle={courseTitle}
+          />
+        </section>
       </PopoverContent>
     </Popover>
   );

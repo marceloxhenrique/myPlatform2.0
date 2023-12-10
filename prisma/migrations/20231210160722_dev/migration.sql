@@ -5,7 +5,7 @@ CREATE TABLE "course" (
     "description" TEXT,
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(6) NOT NULL,
-    "imageUrl" TEXT,
+    "imageUrl" TEXT DEFAULT 'https://utfs.io/f/134c762c-51ef-4810-ae3f-c660fee91014-223acx.png',
     "isPublished" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "course_pkey" PRIMARY KEY ("id")

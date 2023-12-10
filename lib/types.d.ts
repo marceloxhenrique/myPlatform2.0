@@ -1,30 +1,30 @@
 export type Lessons = {
-  id: String;
-  title: String;
-  description: String;
+  id: string;
+  title: string;
+  description: string;
   createdAt: Date;
   updateAt: Date;
-  videoUrl: String;
-  courseId: String;
-  isPublished: Boolean;
+  videoUrl: string;
+  courseId: string;
+  isPublished: boolean;
 };
 
 export type Purchase = {
-  id: String;
-  userId: String;
-  courseId: String;
+  id: string;
+  userId: string;
+  courseId: string;
   course: Course;
   createdAt: Date;
 };
 
 export type Course = {
-  id: String;
-  title: String;
-  description: String;
+  id: string;
+  title: string;
+  description: ?string;
   createdAt: Date;
   updateAt: Date;
-  imageUrl: String;
-  isPublished: Boolean;
+  imageUrl: ?string;
+  isPublished: boolean;
   lessons: Lessons[];
 };
 

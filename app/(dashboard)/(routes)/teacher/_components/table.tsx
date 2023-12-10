@@ -10,23 +10,23 @@ const CoursesTable = ({ courses }: CoursesTableProps) => {
     <>
       {courses.map((course: Course) => (
         <TableRow key={+course.id}>
-          <TableCell className="font-medium max-w-[5rem]">
+          <TableCell className="max-w-[5rem] font-medium">
             {course.title}
           </TableCell>
           <TableCell className="text-center">
             {course.isPublished ? (
-              <p className="py-1 px-2 rounded-lg inline-block bg-emerald-500">
+              <p className="inline-block rounded-lg bg-emerald-500 px-2 py-1">
                 Published
               </p>
             ) : (
-              <p className="py-1 px-2 rounded-lg inline-block bg-red-500">
+              <p className="inline-block rounded-lg bg-red-500 px-2 py-1">
                 Not Published
               </p>
             )}
           </TableCell>
           <TableCell className="text-center">{course.lessons.length}</TableCell>
           <TableCell className="text-center ">
-            <PopOver />
+            <PopOver courseTitle={course.title} courseId={course.id} />
           </TableCell>
         </TableRow>
       ))}
