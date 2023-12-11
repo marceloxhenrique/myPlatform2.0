@@ -9,9 +9,11 @@ import { Pencil, Trash2 } from "lucide-react";
 const PopOver = ({
   courseId,
   courseTitle,
+  updateCourse,
 }: {
   courseId: string;
   courseTitle: string;
+  updateCourse: () => void;
 }) => {
   return (
     <Popover>
@@ -29,6 +31,7 @@ const PopOver = ({
             icon={<Trash2 />}
             courseId={courseId}
             courseTitle={courseTitle}
+            updateCourse={updateCourse}
           />
         </section>
       </PopoverContent>
