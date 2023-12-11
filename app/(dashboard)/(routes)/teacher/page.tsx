@@ -11,8 +11,6 @@ import {
 } from "@/components/ui/table";
 
 const TeacherPage = async () => {
-  const courses = await getAllCourse();
-
   return (
     <>
       <NewCourseButton />
@@ -26,7 +24,7 @@ const TeacherPage = async () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <CoursesTable courses={courses} />
+          <CoursesTable />
         </TableBody>
       </Table>
     </>

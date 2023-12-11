@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import React, { ReactNode } from "react";
-import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import {
   Dialog,
@@ -17,6 +16,7 @@ type DeleteCourseButtonProps = {
   icon: ReactNode;
   courseId: string;
   courseTitle: string;
+  updateCourse: () => void;
 };
 import { Button } from "./ui/button";
 
@@ -24,12 +24,12 @@ const DeleteCourseButton = ({
   icon,
   courseId,
   courseTitle,
+  updateCourse,
 }: DeleteCourseButtonProps) => {
-  const router = useRouter();
   const handleDeleteCourse = async () => {
     try {
       const res = await axios.delete(`/api/courses/${courseId}`);
-      router.push("/teacher");
+      updateCourse();
       toast.success(res.data);
     } catch (error) {
       toast.error(`Unable to delete the course Error: ${error}`);
