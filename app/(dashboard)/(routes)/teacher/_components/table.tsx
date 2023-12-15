@@ -26,6 +26,7 @@ const CoursesTable = () => {
   useEffect(() => {
     getCourses();
   }, []);
+
   return (
     <>
       {courses &&

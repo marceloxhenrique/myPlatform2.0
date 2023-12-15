@@ -28,12 +28,12 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
-    await Prisma.course.create({
+    const course = await Prisma.course.create({
       data: {
         title: title,
       },
     });
-    return NextResponse.json("Course succesfully created!", { status: 201 });
+    return NextResponse.json(course, { status: 201 });
   } catch (error) {
     return NextResponse.json("Unable to create course", { status: 500 });
   }

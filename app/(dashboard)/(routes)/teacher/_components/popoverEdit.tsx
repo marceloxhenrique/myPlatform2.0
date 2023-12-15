@@ -21,11 +21,7 @@ const PopOver = ({
         ...
       </PopoverTrigger>
       <PopoverContent className="flex flex-col justify-items-start gap-2">
-        <EditCourseButton
-          courseTitle={courseTitle}
-          title="Edit"
-          icon={<Pencil />}
-        />
+        <EditCourseButton title="Edit" courseId={courseId} icon={<Pencil />} />
         <section className="flex h-full w-full flex-row items-center gap-2 rounded-sm bg-slate-300 hover:bg-slate-400">
           <DeleteCourseButton
             icon={<Trash2 />}

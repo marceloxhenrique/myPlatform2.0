@@ -45,7 +45,7 @@ export default function CreateCourse() {
     try {
       const res = await axios.post("/api/courses", data);
       form.reset();
-      router.push(`/teacher/course/${data.title}`);
+      router.push(`/teacher/course/${res.data.id}`);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.log(error.response.data.error);

@@ -4,16 +4,16 @@ import { ReactNode } from "react";
 type EditCourseProps = {
   icon: ReactNode;
   title: string;
-  courseTitle: String;
+  courseId: string;
 };
 export const EditCourseButton = ({
   icon,
   title,
-  courseTitle,
+  courseId,
 }: EditCourseProps) => {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/teacher/course/${courseTitle}`);
+    router.push(`/teacher/course/${courseId}`);
   };
   return (
     <button
