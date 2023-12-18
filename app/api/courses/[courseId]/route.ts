@@ -35,7 +35,7 @@ export async function PATCH(
   { params }: { params: { courseId: string } },
 ) {
   const courseId = params.courseId;
-  const titleName = await request.json();
+  const { title: newTitle } = await request.json();
   if (courseId) {
     try {
       const { userId } = auth();
@@ -48,10 +48,10 @@ export async function PATCH(
           id: courseId,
         },
         data: {
-          title: titleName,
+          title: newTitle,
         },
       });
-      return NextResponse.json(`Course ${res.title} successfuly updated`, {
+      return NextResponse.json(res, {
         status: 201,
       });
     } catch (error) {

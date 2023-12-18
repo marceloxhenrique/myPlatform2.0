@@ -1,9 +1,7 @@
 "use client";
-import { useState } from "react";
 import axios from "axios";
-import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import {
@@ -16,7 +14,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { UploadFileResponse } from "uploadthing/client";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const createCourseTitleFormSchema = z.object({
   title: z
@@ -31,23 +30,35 @@ const createCourseTitleFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof createCourseTitleFormSchema>;
 
-export default function TitleForm() {
-  const [newImageUrl, setNewImageUrl] = useState<
-    UploadFileResponse<null>[] | undefined
-  >();
-
+type CourseIdProps = {
+  id: string;
+  title: string;
+  description: string | null;
+  createdAt: Date;
+  updateAt: Date;
+  imageUrl: string | null;
+  isPublished: boolean;
+} | null;
+export default function TitleForm({
+  courseData,
+}: {
+  courseData: CourseIdProps;
+}) {
   const form = useForm<z.infer<typeof createCourseTitleFormSchema>>({
     resolver: zodResolver(createCourseTitleFormSchema),
     defaultValues: {
-      title: "",
+      title: courseData?.title,
     },
-    mode: "onChange",
   });
-
+  const router = useRouter();
   async function onSubmit(data: ProfileFormValues) {
-    const res = await axios.post("/api/courses", data);
-    form.reset();
-    console.log(res);
+    console.log("data", data);
+    try {
+      const res = await axios.patch(`/api/courses/${courseData?.id}`, data);
+      router.refresh();
+    } catch (error) {
+      console.error("Error in onSubmit:", error);
+    }
   }
   return (
     <Form {...form}>
@@ -69,6 +80,9 @@ export default function TitleForm() {
               </FormItem>
             )}
           />
+          <Button type="submit" className="bg-green-600 hover:bg-green-500">
+            Continue
+          </Button>
         </section>
       </form>
     </Form>
