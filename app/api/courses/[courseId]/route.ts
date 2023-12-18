@@ -35,7 +35,7 @@ export async function PATCH(
   { params }: { params: { courseId: string } },
 ) {
   const courseId = params.courseId;
-  const { title: newTitle } = await request.json();
+  const values = await request.json();
   if (courseId) {
     try {
       const { userId } = auth();
@@ -48,7 +48,7 @@ export async function PATCH(
           id: courseId,
         },
         data: {
-          title: newTitle,
+          ...values,
         },
       });
       return NextResponse.json(res, {
