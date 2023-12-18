@@ -3,28 +3,28 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
   FormControl,
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 const createCourseTitleFormSchema = z.object({
-  title: z
+  description: z
     .string()
     .min(2, {
-      message: "Title must be at least 2 characters.",
+      message: "Description must be at least 2 characters.",
     })
-    .max(30, {
-      message: "Title must not be longer than 30 characters.",
+    .max(100, {
+      message: "Description must not be longer than 100 characters.",
     }),
 });
 
@@ -32,9 +32,9 @@ type ProfileFormValues = z.infer<typeof createCourseTitleFormSchema>;
 
 type CourseIdProps = {
   id: string;
-  title: string;
+  description: string | null;
 } | null;
-export default function TitleForm({
+export default function DescriptionForm({
   courseData,
 }: {
   courseData: CourseIdProps;
@@ -42,7 +42,7 @@ export default function TitleForm({
   const form = useForm<z.infer<typeof createCourseTitleFormSchema>>({
     resolver: zodResolver(createCourseTitleFormSchema),
     defaultValues: {
-      title: courseData?.title,
+      description: courseData?.description ? courseData?.description : "",
     },
   });
   const router = useRouter();
@@ -57,18 +57,23 @@ export default function TitleForm({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <section className="mb-4 rounded-md bg-slate-200 p-4 px-5 py-2">
+        <section className="my-2 rounded-md bg-slate-200 p-4 px-5 py-2">
           <FormField
             control={form.control}
-            name="title"
+            name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Course Title</FormLabel>
+                <Label htmlFor="message-2">Description</Label>
                 <FormControl>
-                  <Input placeholder="Course name" {...field} />
+                  <Textarea
+                    placeholder="Type your description here."
+                    id="message-2"
+                    className="resize-none"
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>
-                  What are you gonig to teach in this course?
+                  Describe your course in few words.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
