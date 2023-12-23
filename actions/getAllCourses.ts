@@ -5,6 +5,5 @@ export async function getAllCourse() {
       lessons: true,
     },
   });
-
   return courses;
 }
