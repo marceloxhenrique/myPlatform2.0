@@ -3,6 +3,8 @@ import { db as Prisma } from "@/lib/db";
 import DescriptionForm from "../_components/descriptionForm";
 import { LessonsList } from "../_components/lessonsList";
 
+import CourseThumbnailSelector from "../_components/courseThumbnailSelector";
+
 type CourseData = {
   id: string;
   title: string;
@@ -26,11 +28,11 @@ type Lesson = {
 };
 
 const CreateCourse = async ({ params }: { params: { courseId: string } }) => {
-  const course: string = params.courseId.toString();
+  const courseId: string = params.courseId.toString();
 
   const courseData: CourseData = await Prisma.course.findUnique({
     where: {
-      id: course,
+      id: courseId,
     },
     select: {
       id: true,
@@ -60,6 +62,7 @@ const CreateCourse = async ({ params }: { params: { courseId: string } }) => {
       <section className="h-min flex-1">
         <TitleForm courseData={courseData} />
         <DescriptionForm courseData={courseData} />
+        <CourseThumbnailSelector courseData={courseData} />
       </section>
       <section className="flex-1">
         <LessonsList courseData={courseData} />

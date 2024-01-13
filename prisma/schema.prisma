@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,31 +8,29 @@ datasource db {
 }
 
 model Course {
-  id          String   @id @default(uuid())
-  title       String   @unique @db.Text
-  description String?  @db.Text
-  createdAt   DateTime @default(now()) @db.Timestamp(6)
-  updateAt    DateTime @updatedAt @db.Timestamp(6)
-  imageUrl    String?  @default("https://utfs.io/f/134c762c-51ef-4810-ae3f-c660fee91014-223acx.png") @db.Text
-  isPublished Boolean  @default(false)
-
-  lessons  Lesson[]
-  Purchase Purchase[]
+  id          String     @id @default(uuid())
+  title       String     @unique
+  description String?
+  createdAt   DateTime   @default(now()) @db.Timestamp(6)
+  updateAt    DateTime   @updatedAt @db.Timestamp(6)
+  imageUrl    String?    @default("https://utfs.io/f/134c762c-51ef-4810-ae3f-c660fee91014-223acx.png")
+  isPublished Boolean    @default(false)
+  lessons     Lesson[]
+  Purchase    Purchase[]
 
   @@map("course")
 }
 
 model Lesson {
   id          String   @id @default(uuid())
-  title       String   @db.Text
-  description String   @db.Text
+  title       String
+  description String
   createdAt   DateTime @default(now()) @db.Timestamp(6)
   updateAt    DateTime @updatedAt @db.Timestamp(6)
-  videoUrl    String   @db.Text
+  videoUrl    String
   courseId    String
   isPublished Boolean  @default(false)
-
-  course Course @relation(fields: [courseId], references: [id])
+  course      Course   @relation(fields: [courseId], references: [id])
 
   @@map("lesson")
 }
@@ -44,8 +39,8 @@ model Purchase {
   id        String   @id @default(uuid())
   userId    String
   courseId  String
-  course    Course   @relation(fields: [courseId], references: [id])
   createdAt DateTime @default(now())
+  course    Course   @relation(fields: [courseId], references: [id])
 
   @@unique([userId, courseId])
   @@map("purchase")

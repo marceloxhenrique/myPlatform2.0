@@ -3,6 +3,7 @@ import { CourseCard } from "./_components/courseCard";
 
 const CoursePage = async () => {
   const courses = await getPublishedCourse();
+
   return (
     <main className="h-full w-full p-4">
       <section className="grid w-full items-center p-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
