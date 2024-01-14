@@ -4,6 +4,7 @@ import DescriptionForm from "../_components/descriptionForm";
 import { LessonsList } from "../_components/lessonsList";
 
 import CourseThumbnailSelector from "../_components/courseThumbnailSelector";
+import PublishCourseButton from "../_components/publishCourseButton";
 
 type CourseData = {
   id: string;
@@ -60,6 +61,7 @@ const CreateCourse = async ({ params }: { params: { courseId: string } }) => {
   return (
     <main className="flex flex-col gap-6 p-4 lg:flex-row">
       <section className="h-min flex-1">
+        <PublishCourseButton courseData={courseData} />
         <TitleForm courseData={courseData} />
         <DescriptionForm courseData={courseData} />
         <CourseThumbnailSelector courseData={courseData} />

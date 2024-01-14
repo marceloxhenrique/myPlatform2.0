@@ -55,9 +55,7 @@ export async function PATCH(
         status: 201,
       });
     } catch (error) {
-      return NextResponse.json(
-        `Unable to update the course title Error: ${error}`,
-      );
+      return NextResponse.json(`Unable to update the course Error: ${error}`);
     }
   }
   return NextResponse.json(`Unable to retrive data`, { status: 500 });
