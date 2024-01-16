@@ -10,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Router } from "lucide-react";
 
 type CourseData = {
   id: string;
@@ -69,7 +68,7 @@ export function LessonsList({ courseData }: { courseData: CourseData }) {
               <Button
                 variant={"secondary"}
                 onClick={() => {
-                  router.push("#");
+                  router.push(`/teacher/lessons/${lesson.id}`);
                 }}
               >
                 Edit
