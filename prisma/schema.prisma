@@ -24,10 +24,10 @@ model Course {
 model Lesson {
   id          String   @id @default(uuid())
   title       String
-  description String
+  description String?
   createdAt   DateTime @default(now()) @db.Timestamp(6)
   updateAt    DateTime @updatedAt @db.Timestamp(6)
-  videoUrl    String
+  videoUrl    String?
   courseId    String
   isPublished Boolean  @default(false)
   course      Course   @relation(fields: [courseId], references: [id])
