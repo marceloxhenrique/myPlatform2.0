@@ -1,21 +1,9 @@
 import TitleForm from "../_components/titleForm";
 import { db as Prisma } from "@/lib/db";
 import DescriptionForm from "../_components/descriptionForm";
-// import { LessonsList } from "../_components/lessonsList";
-
 import LessonThumbnailSelector from "../_components/lessonThumbnailSelector";
 import PublishLessonButton from "../_components/publishLessonButton";
-
-type Lesson = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  videoUrl: string;
-  courseId: string;
-  isPublished: boolean;
-} | null;
+import { Lesson } from "@/lib/types";
 
 const CreateLesson = async ({ params }: { params: { lessonId: string } }) => {
   const lessonId: string = params.lessonId.toString();

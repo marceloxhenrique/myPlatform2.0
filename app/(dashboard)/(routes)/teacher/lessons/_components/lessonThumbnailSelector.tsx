@@ -2,28 +2,7 @@
 import { UploadDropzone } from "@/lib/uploadthing";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-
-type CourseData = {
-  id: string;
-  title: string;
-  description: string | null;
-  createdAt: Date;
-  updateAt: Date;
-  imageUrl: string | null;
-  isPublished: boolean;
-  lessons: Lesson[];
-} | null;
-
-type Lesson = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  videoUrl: string;
-  courseId: string;
-  isPublished: boolean;
-};
+import { CourseData } from "@/lib/types";
 
 export default function LessonThumbnailSelector({
   courseData,

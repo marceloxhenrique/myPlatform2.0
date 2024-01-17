@@ -1,14 +1,3 @@
-export type Lessons = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  videoUrl: string;
-  courseId: string;
-  isPublished: boolean;
-};
-
 export type Purchase = {
   id: string;
   userId: string;
@@ -17,18 +6,29 @@ export type Purchase = {
   createdAt: Date;
 };
 
-export type Course = {
-  id: string;
-  title: string;
-  description: ?string;
-  createdAt: Date;
-  updateAt: Date;
-  imageUrl: ?string;
-  isPublished: boolean;
-  lessons: Lessons[];
-};
-
 export type FormCreateCourseProps = {
   title: string;
   description: string;
 };
+
+type Lesson = {
+  id: string;
+  title: string;
+  description: string | null;
+  createdAt: Date;
+  updateAt: Date;
+  videoUrl: string | null;
+  isPublished: boolean;
+  courseId: string;
+} | null;
+
+type CourseData = {
+  id: string;
+  title: string;
+  description: string | null;
+  createdAt: Date;
+  updateAt: Date;
+  imageUrl: string | null;
+  isPublished: boolean;
+  lessons: Lesson[];
+} | null;
