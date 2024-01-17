@@ -10,28 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-type CourseData = {
-  id: string;
-  title: string;
-  description: string | null;
-  createdAt: Date;
-  updateAt: Date;
-  imageUrl: string | null;
-  isPublished: boolean;
-  lessons: Lesson[];
-} | null;
-
-type Lesson = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  videoUrl: string;
-  courseId: string;
-  isPublished: boolean;
-};
+import { CourseData } from "@/lib/types";
 
 export function LessonsList({ courseData }: { courseData: CourseData }) {
   const router = useRouter();
@@ -51,10 +30,10 @@ export function LessonsList({ courseData }: { courseData: CourseData }) {
       </TableHeader>
       <TableBody>
         {courseData?.lessons.map((lesson) => (
-          <TableRow key={lesson.id}>
-            <TableCell className="font-medium">{lesson.title}</TableCell>
+          <TableRow key={lesson?.id}>
+            <TableCell className="font-medium">{lesson?.title}</TableCell>
             <TableCell className="text-center">
-              {lesson.isPublished ? (
+              {lesson?.isPublished ? (
                 <p className="inline-block rounded-lg bg-emerald-500 px-2 py-1">
                   Published
                 </p>
@@ -68,7 +47,7 @@ export function LessonsList({ courseData }: { courseData: CourseData }) {
               <Button
                 variant={"secondary"}
                 onClick={() => {
-                  router.push(`/teacher/lessons/${lesson.id}`);
+                  router.push(`/teacher/lessons/${lesson?.id}`);
                 }}
               >
                 Edit

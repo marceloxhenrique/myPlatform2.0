@@ -5,28 +5,8 @@ import { LessonsList } from "../_components/lessonsList";
 
 import CourseThumbnailSelector from "../_components/courseThumbnailSelector";
 import PublishCourseButton from "../_components/publishCourseButton";
-
-type CourseData = {
-  id: string;
-  title: string;
-  description: string | null;
-  createdAt: Date;
-  updateAt: Date;
-  imageUrl: string | null;
-  isPublished: boolean;
-  lessons: Lesson[];
-} | null;
-
-type Lesson = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  videoUrl: string;
-  courseId: string;
-  isPublished: boolean;
-};
+import NewLessonButton from "../../lessons/_components/newLessonButton";
+import { CourseData } from "@/lib/types";
 
 const CreateCourse = async ({ params }: { params: { courseId: string } }) => {
   const courseId: string = params.courseId.toString();
@@ -59,7 +39,7 @@ const CreateCourse = async ({ params }: { params: { courseId: string } }) => {
   });
 
   return (
-    <main className="flex flex-col gap-6 p-4 lg:flex-row">
+    <main className="flex flex-col gap-6 p-2 lg:flex-row">
       <section className="h-min flex-1">
         <PublishCourseButton courseData={courseData} />
         <TitleForm courseData={courseData} />
@@ -67,6 +47,7 @@ const CreateCourse = async ({ params }: { params: { courseId: string } }) => {
         <CourseThumbnailSelector courseData={courseData} />
       </section>
       <section className="flex-1">
+        <NewLessonButton />
         <LessonsList courseData={courseData} />
       </section>
     </main>

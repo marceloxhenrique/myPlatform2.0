@@ -3,17 +3,7 @@ import React, { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-type Lesson = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-  updateAt: Date;
-  videoUrl: string;
-  courseId: string;
-  isPublished: boolean;
-} | null;
+import { Lesson } from "@/lib/types";
 
 const PublishLessonButton = ({
   lessonData: lessonData,
