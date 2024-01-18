@@ -2,12 +2,12 @@
 import { UploadDropzone } from "@/lib/uploadthing";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { CourseData } from "@/lib/types";
+import { Lesson } from "@/lib/types";
 
 export default function LessonThumbnailSelector({
-  courseData,
+  lessonData: lessonData,
 }: {
-  courseData: CourseData;
+  lessonData: Lesson;
 }) {
   return (
     <section className=" rounded-md bg-slate-200 p-4">
@@ -16,22 +16,22 @@ export default function LessonThumbnailSelector({
         content={{
           label({ isDragActive }) {
             return isDragActive
-              ? "Drop image here"
-              : "Choose image or drag and drop.";
+              ? "Drop video here"
+              : "Choose video or drag and drop.";
           },
         }}
-        endpoint="imageUploader"
+        endpoint="videoUploader"
         onClientUploadComplete={(res) => {
-          const data = { imageUrl: `${res[0].url}` };
+          const data = { videoUrl: `${res[0].url}` };
           try {
-            axios.patch(`/api/courses/${courseData?.id}`, data);
-            toast.success("Image uploaded");
+            axios.patch(`/api/lessons/${lessonData?.id}`, data);
+            toast.success("Video uploaded");
           } catch (err) {
-            toast.error("Image could not be uploaded");
+            toast.error("Video could not be uploaded");
           }
         }}
         onUploadError={(error: Error) => {
-          toast.error("Image could not be uploaded");
+          toast.error("Video could not be uploaded");
         }}
       />
     </section>
