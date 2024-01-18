@@ -1,7 +1,7 @@
 import TitleForm from "../_components/titleForm";
 import { db as Prisma } from "@/lib/db";
 import DescriptionForm from "../_components/descriptionForm";
-import LessonThumbnailSelector from "../_components/lessonThumbnailSelector";
+import LessonVideoSelector from "../_components/lessonVideoSelector";
 import PublishLessonButton from "../_components/publishLessonButton";
 import { Lesson } from "@/lib/types";
 
@@ -30,7 +30,7 @@ const CreateLesson = async ({ params }: { params: { lessonId: string } }) => {
         <PublishLessonButton lessonData={lessonData} />
         <TitleForm lessonData={lessonData} />
         <DescriptionForm lessonData={lessonData} />
-        {/* <LessonThumbnailSelector lessonData={lessonData} />s */}
+        <LessonVideoSelector lessonData={lessonData} />
       </section>
       <section className="flex-1"></section>
     </main>
