@@ -21,6 +21,7 @@ const TeacherPage = async () => {
             <TableHead className="text-left">Course</TableHead>
             <TableHead className="text-center">Status</TableHead>
             <TableHead className="text-center">Lessons</TableHead>
+            <TableHead className="text-center">Seetings</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

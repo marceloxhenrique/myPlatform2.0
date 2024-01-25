@@ -82,7 +82,7 @@ export default function CreateCourse() {
                   />
                 </FormControl>
                 <FormDescription>
-                  What are you gonig to teach in this coruse
+                  What are you gonig to teach in this course
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -91,7 +91,7 @@ export default function CreateCourse() {
           <section className="flex w-full  justify-center gap-8 p-2 py-6">
             <Button
               onClick={() => {
-                router.push("/teacher");
+                router.back();
               }}
               variant={"outline"}
             >

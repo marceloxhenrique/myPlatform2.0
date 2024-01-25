@@ -26,26 +26,32 @@ const formSchema = z.object({
     .max(30, {
       message: "Title must not be longer than 30 characters.",
     }),
+  id: z.string(),
 });
 
 type ProfileFormValues = z.infer<typeof formSchema>;
 
-export default function CreateCourse() {
+export default function CreateCourse({
+  params,
+}: {
+  params: { courseId: string };
+}) {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
+      id: params.courseId,
     },
     mode: "onChange",
   });
 
   async function onSubmit(data: ProfileFormValues) {
     try {
-      const res = await axios.post("/api/courses", data);
+      const res = await axios.post("/api/lessons", data);
       form.reset();
-      router.push(`/teacher/course/${res.data.id}`);
+      router.push(`/teacher/lessons/${res.data.id}`);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.log(error.response.data.error);
@@ -91,7 +97,7 @@ export default function CreateCourse() {
           <section className="flex w-full  justify-center gap-8 p-2 py-6">
             <Button
               onClick={() => {
-                router.push("/teacher");
+                router.push(`/teacher/course/${params.courseId}`);
               }}
               variant={"outline"}
             >

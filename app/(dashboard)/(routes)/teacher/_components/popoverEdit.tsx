@@ -11,8 +11,8 @@ const PopOver = ({
   courseTitle,
   updateCourse,
 }: {
-  courseId: string;
-  courseTitle: string;
+  courseId?: string;
+  courseTitle?: string;
   updateCourse: () => void;
 }) => {
   return (

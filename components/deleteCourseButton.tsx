@@ -14,8 +14,8 @@ import {
 
 type DeleteCourseButtonProps = {
   icon: ReactNode;
-  courseId: string;
-  courseTitle: string;
+  courseId?: string;
+  courseTitle?: string;
   updateCourse: () => void;
 };
 import { Button } from "./ui/button";

@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 type EditCourseProps = {
   icon: ReactNode;
   title: string;
-  courseId: string;
+  courseId?: string;
 };
 export const EditCourseButton = ({
   icon,
