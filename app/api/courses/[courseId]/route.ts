@@ -60,3 +60,31 @@ export async function PATCH(
   }
   return NextResponse.json(`Unable to retrive data`, { status: 500 });
 }
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { courseId: string } },
+) {
+  const courseId = params.courseId;
+  try {
+    const { userId } = auth();
+    const res = await Prisma.course.findUnique({
+      where: {
+        id: courseId,
+      },
+      include: {
+        lessons: true,
+      },
+    });
+
+    if (!userId) {
+      return NextResponse.json("Not Authorized", { status: 401 });
+    }
+    return NextResponse.json({ course: res }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      "Unable to retrive data. Please try again later" + error,
+      { status: 500 },
+    );
+  }
+}
