@@ -1,19 +1,19 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-type EditCourseProps = {
+type EditLessonProps = {
   icon: ReactNode;
   title: string;
-  courseId?: string;
+  lessonId?: string;
 };
-export const EditCourseButton = ({
+export const EditLessonButton = ({
   icon,
   title,
-  courseId,
-}: EditCourseProps) => {
+  lessonId,
+}: EditLessonProps) => {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/teacher/course/${courseId}`);
+    router.push(`/teacher/lessons/${lessonId}`);
   };
   return (
     <button

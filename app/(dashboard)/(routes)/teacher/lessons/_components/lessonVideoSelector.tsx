@@ -11,6 +11,7 @@ export default function LessonThumbnailSelector({
 }) {
   return (
     <section className=" rounded-md bg-slate-200 p-4">
+      <p className="text-sm font-medium leading-none">Video</p>
       <UploadDropzone
         className={`ut-label:text-xs ut-label:text-emerald-700 md:ut-label:text-base`}
         content={{

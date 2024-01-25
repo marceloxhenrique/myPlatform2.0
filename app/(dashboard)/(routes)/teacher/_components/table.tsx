@@ -1,11 +1,11 @@
 "use client";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { useEffect, useState } from "react";
-import { Course } from "@/lib/types";
+import { CourseData } from "@/lib/types";
 import PopOver from "./popoverEdit";
 
 const CoursesTable = () => {
-  const [courses, setCourses] = useState<Course[]>();
+  const [courses, setCourses] = useState<CourseData[]>();
   const getCourses = async () => {
     try {
       const res = await fetch("/api/courses", {
@@ -30,13 +30,13 @@ const CoursesTable = () => {
   return (
     <>
       {courses &&
-        courses.map((course: Course) => (
-          <TableRow key={course.id}>
+        courses.map((course: CourseData) => (
+          <TableRow key={course?.id}>
             <TableCell className="max-w-[5rem] font-medium">
-              {course.title}
+              {course?.title}
             </TableCell>
             <TableCell className="text-center">
-              {course.isPublished ? (
+              {course?.isPublished ? (
                 <p className="inline-block rounded-lg bg-emerald-500 px-2 py-1">
                   Published
                 </p>
@@ -47,12 +47,12 @@ const CoursesTable = () => {
               )}
             </TableCell>
             <TableCell className="text-center">
-              {course.lessons.length}
+              {course?.lessons.length}
             </TableCell>
             <TableCell className="text-center ">
               <PopOver
-                courseTitle={course.title}
-                courseId={course.id}
+                courseTitle={course?.title}
+                courseId={course?.id}
                 updateCourse={updateCoursesTable}
               />
             </TableCell>

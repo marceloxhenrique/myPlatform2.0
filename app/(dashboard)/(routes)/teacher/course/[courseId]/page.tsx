@@ -47,7 +47,7 @@ const CreateCourse = async ({ params }: { params: { courseId: string } }) => {
         <CourseThumbnailSelector courseData={courseData} />
       </section>
       <section className="flex-1">
-        <NewLessonButton />
+        <NewLessonButton courseData={courseData} />
         <LessonsList courseData={courseData} />
       </section>
     </main>

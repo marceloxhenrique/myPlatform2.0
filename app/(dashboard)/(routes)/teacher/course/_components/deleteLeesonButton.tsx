@@ -12,23 +12,23 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-type DeleteCourseButtonProps = {
+type DeleteLessonButtonProps = {
   icon: ReactNode;
-  courseId?: string;
-  courseTitle?: string;
+  lessonId?: string;
+  lessonTitle?: string;
   updateCourse: () => void;
 };
-import { Button } from "./ui/button";
+import { Button } from "../../../../../../components/ui/button";
 
-const DeleteCourseButton = ({
+const DeleteLessonButton = ({
   icon,
-  courseId,
-  courseTitle,
+  lessonId,
+  lessonTitle,
   updateCourse,
-}: DeleteCourseButtonProps) => {
+}: DeleteLessonButtonProps) => {
   const handleDeleteCourse = async () => {
     try {
-      const res = await axios.delete(`/api/courses/${courseId}`);
+      const res = await axios.delete(`/api/lessons/${lessonId}`);
       updateCourse();
       toast.success(res.data);
     } catch (error) {
@@ -43,22 +43,20 @@ const DeleteCourseButton = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-center">
-            Are you sure absolutely sure?
-          </DialogTitle>
+          <DialogTitle className="text-center">Are you sure?</DialogTitle>
           <DialogDescription className="text-center">
             This action cannot be undone. This will permanently delete your
-            <span className="font-extrabold">{` ${courseTitle} `}</span> course
+            <span className="font-extrabold">{` ${lessonTitle} `}</span> lesson
             and remove the data from our servers.
           </DialogDescription>
         </DialogHeader>
         <DialogClose asChild>
-          <Button variant={"default"} className="w-full">
+          <Button variant={"outline"} className="w-full">
             Cancel
           </Button>
         </DialogClose>
         <DialogClose asChild>
-          <Button variant={"destructive"} onClick={handleDeleteCourse}>
+          <Button variant={"default"} onClick={handleDeleteCourse}>
             Continue
           </Button>
         </DialogClose>
@@ -67,4 +65,4 @@ const DeleteCourseButton = ({
   );
 };
 
-export default DeleteCourseButton;
+export default DeleteLessonButton;

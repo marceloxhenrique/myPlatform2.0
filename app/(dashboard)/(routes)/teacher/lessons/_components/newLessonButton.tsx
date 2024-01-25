@@ -2,11 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { PlusCircle } from "lucide-react";
-
-const NewLessonButton = () => {
+import { CourseData } from "@/lib/types";
+const NewLessonButton = ({ courseData }: { courseData: CourseData }) => {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/teacher/create");
+    router.push(`/teacher/lessons/create/${courseData?.id}`);
   };
   return (
     <section className="flex w-full justify-end ">

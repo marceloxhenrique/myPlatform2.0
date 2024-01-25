@@ -1,18 +1,18 @@
-import DeleteCourseButton from "@/components/deleteCourseButton";
-import { EditCourseButton } from "@/components/editCourseButton";
+import DeleteLessonButton from "./deleteLeesonButton";
+import { EditLessonButton } from "./editLessonButton";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Pencil, Trash2 } from "lucide-react";
-const PopOver = ({
-  courseId,
-  courseTitle,
+const PopOverEditLesson = ({
+  lessonId,
+  lessonTitle,
   updateCourse,
 }: {
-  courseId?: string;
-  courseTitle?: string;
+  lessonId?: string;
+  lessonTitle?: string;
   updateCourse: () => void;
 }) => {
   return (
@@ -21,12 +21,12 @@ const PopOver = ({
         ...
       </PopoverTrigger>
       <PopoverContent className="flex flex-col justify-items-start gap-2">
-        <EditCourseButton title="Edit" courseId={courseId} icon={<Pencil />} />
+        <EditLessonButton title="Edit" lessonId={lessonId} icon={<Pencil />} />
         <section className="flex h-full w-full flex-row items-center gap-2 rounded-sm bg-slate-300 hover:bg-slate-400">
-          <DeleteCourseButton
+          <DeleteLessonButton
             icon={<Trash2 />}
-            courseId={courseId}
-            courseTitle={courseTitle}
+            lessonId={lessonId}
+            lessonTitle={lessonTitle}
             updateCourse={updateCourse}
           />
         </section>
@@ -35,4 +35,4 @@ const PopOver = ({
   );
 };
 
-export default PopOver;
+export default PopOverEditLesson;

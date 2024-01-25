@@ -5,11 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Lesson } from "@/lib/types";
 
-const PublishLessonButton = ({
-  lessonData: lessonData,
-}: {
-  lessonData: Lesson;
-}) => {
+const PublishLessonButton = ({ lessonData }: { lessonData: Lesson }) => {
   const [toggle, setToggle] = useState<boolean | undefined>(
     lessonData?.isPublished,
   );
