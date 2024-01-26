@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { BookOpenCheck } from "lucide-react";
+import Link from "next/link";
 type LessonsProps = {
   id: string;
   title: string;
@@ -17,19 +18,21 @@ type CourseProps = {
   lessons: LessonsProps[];
 };
 
-export function CourseCard({ title, lessons, imageUrl }: CourseProps) {
+export function CourseCard({ title, lessons, imageUrl, id }: CourseProps) {
   return (
-    <section className="border-slate-150 m-2  flex min-w-[10rem] max-w-xl cursor-pointer flex-col rounded-md border-2 p-2  hover:bg-slate-100">
-      <section className="relative aspect-video overflow-hidden rounded-md ">
-        <Image fill src={imageUrl} className="object-cover" alt={title} />
-      </section>
-      <section className="rounded-b-md">
-        <h1 className="my-4 text-xl font-medium text-black">{title}</h1>
-        <section className="inline-flex items-center text-slate-500 ">
-          <BookOpenCheck className="h-4 w-4  text-emerald-800 " />
-          <p className="ml-2">{lessons.length} Lessons</p>
+    <Link href={`/courses/${id}`}>
+      <section className="border-slate-150 m-2  flex min-w-[10rem] max-w-xl cursor-pointer flex-col rounded-md border-2 p-2  hover:bg-slate-100">
+        <section className="relative aspect-video overflow-hidden rounded-md ">
+          <Image fill src={imageUrl} className="object-cover" alt={title} />
+        </section>
+        <section className="rounded-b-md">
+          <h1 className="my-4 text-xl font-medium text-black">{title}</h1>
+          <div className="inline-flex items-center text-slate-500 ">
+            <BookOpenCheck className="h-4 w-4  text-emerald-800 " />
+            <p className="ml-2">{lessons.length} Lessons</p>
+          </div>
         </section>
       </section>
-    </section>
+    </Link>
   );
 }
