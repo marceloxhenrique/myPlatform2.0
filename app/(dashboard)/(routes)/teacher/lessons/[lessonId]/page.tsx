@@ -25,7 +25,7 @@ const CreateLesson = async ({ params }: { params: { lessonId: string } }) => {
   });
 
   return (
-    <main className="flex flex-col gap-6 p-4 lg:flex-row">
+    <main className="flex flex-col gap-6 p-2 lg:flex-row">
       <section className="h-min flex-1">
         <PublishLessonButton lessonData={lessonData} />
         <TitleForm lessonData={lessonData} />
