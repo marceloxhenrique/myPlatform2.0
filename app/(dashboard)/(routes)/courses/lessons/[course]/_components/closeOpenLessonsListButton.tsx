@@ -1,14 +1,17 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { JSXElementConstructor } from "react";
 
-const CloseOpenLessonsListButton = () => {
-  const closeOpenLessonListButton = () => {};
+const CloseOpenLessonsListButton = ({
+  closeOpenLessonListButton,
+}: {
+  closeOpenLessonListButton: () => void;
+}) => {
   return (
     <Button
       onClick={closeOpenLessonListButton}
-      className="bg-green-600 hover:bg-green-500"
+      className="w-[10em] bg-green-600 transition-all duration-1000 ease-in-out  hover:bg-green-500"
     >
-      Close
+      See lessons
     </Button>
   );
 };
