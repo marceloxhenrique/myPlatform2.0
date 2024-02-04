@@ -1,9 +1,8 @@
 "use client";
-import { BookOpenCheck } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import path from "path";
 
 interface SidebarItemProps {
   icon: LucideIcon;
@@ -29,9 +28,9 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       onClick={onClick}
       type="button"
       className={cn(
-        "flex items-center gap-x-2 text-emerald-800 text-sm font-[500] pl-6 transition-all hover:text-emerald-900 hover:bg-slate-300/20",
+        "flex items-center gap-x-2 pl-6 text-sm font-[500] text-emerald-800 transition-all hover:bg-slate-300/20 hover:text-emerald-900",
         isActive &&
-          "text-emerald-800 bg-sky-200/20 hover:bg-sky-200/20 hover:text-emerald-700"
+          "bg-sky-200/20 text-emerald-800 hover:bg-sky-200/20 hover:text-emerald-700",
       )}
     >
       <div className="flex items-center gap-x-2 py-4">
@@ -43,8 +42,8 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       </div>
       <div
         className={cn(
-          "ml-auto opacity-0 border-2 border-emerald-800 h-full transition-all",
-          isActive && "opacity-100"
+          "ml-auto h-full border-2 border-emerald-800 opacity-0 transition-all",
+          isActive && "opacity-100",
         )}
       />
     </button>
