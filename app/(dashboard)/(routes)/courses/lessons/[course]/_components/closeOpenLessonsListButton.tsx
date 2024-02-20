@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React, { JSXElementConstructor } from "react";
+import React from "react";
 
 const CloseOpenLessonsListButton = ({
   closeOpenLessonListButton,

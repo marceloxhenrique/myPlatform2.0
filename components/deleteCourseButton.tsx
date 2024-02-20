@@ -53,12 +53,12 @@ const DeleteCourseButton = ({
           </DialogDescription>
         </DialogHeader>
         <DialogClose asChild>
-          <Button variant={"default"} className="w-full">
+          <Button variant={"outline"} className="w-full">
             Cancel
           </Button>
         </DialogClose>
         <DialogClose asChild>
-          <Button variant={"destructive"} onClick={handleDeleteCourse}>
+          <Button variant={"default"} onClick={handleDeleteCourse}>
             Continue
           </Button>
         </DialogClose>

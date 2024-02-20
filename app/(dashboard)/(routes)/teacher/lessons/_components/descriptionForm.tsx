@@ -23,8 +23,8 @@ const createLessonTitleFormSchema = z.object({
     .min(2, {
       message: "Description must be at least 2 characters.",
     })
-    .max(100, {
-      message: "Description must not be longer than 100 characters.",
+    .max(700, {
+      message: "Description must not be longer than 700 characters.",
     }),
 });
 

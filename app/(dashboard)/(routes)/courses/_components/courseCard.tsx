@@ -23,7 +23,7 @@ export function CourseCard({ title, lessons, imageUrl, id }: CourseProps) {
     <Link href={`/courses/${id}`}>
       <section className="border-slate-150 m-2  flex min-w-[10rem] max-w-xl cursor-pointer flex-col rounded-md border-2 p-2  hover:bg-slate-100">
         <section className="relative aspect-video overflow-hidden rounded-md ">
-          <Image fill src={imageUrl} className="object-cover" alt={title} />
+          <Image fill src={imageUrl} className="object-center" alt={title} />
         </section>
         <section className="rounded-b-md">
           <h1 className="my-4 text-xl font-medium text-black">{title}</h1>
