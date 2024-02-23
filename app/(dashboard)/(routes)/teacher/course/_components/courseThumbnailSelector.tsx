@@ -9,6 +9,9 @@ export default function CourseThumbnailSelector({
 }: {
   courseData: CourseData;
 }) {
+  const deletefile = {
+    imageURL: `${courseData?.imageUrl?.split("").slice(18).join("")}`,
+  };
   return (
     <section className=" rounded-md bg-slate-200 p-4">
       <p className="text-sm font-medium leading-none">Thumbnail</p>
@@ -22,10 +25,13 @@ export default function CourseThumbnailSelector({
           },
         }}
         endpoint="imageUploader"
-        onClientUploadComplete={(res) => {
+        onClientUploadComplete={async (res) => {
           const data = { imageUrl: `${res[0].url}` };
           try {
-            axios.patch(`/api/courses/${courseData?.id}`, data);
+            if (deletefile.imageURL) {
+              await axios.delete(`/api/uploadthing/${deletefile.imageURL}`);
+            }
+            await axios.patch(`/api/courses/${courseData?.id}`, data);
             toast.success("Image uploaded");
           } catch (err) {
             toast.error("Image could not be uploaded");
