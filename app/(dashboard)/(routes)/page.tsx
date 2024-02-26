@@ -2,18 +2,38 @@ import { getPublishedCourse } from "@/actions/getPublishedCourses";
 import { CourseCard } from "./courses/_components/courseCard";
 import { currentUser } from "@clerk/nextjs";
 import GetEnrolledCourses from "@/actions/getEnrolledCourses";
-// import UserId from "../_components/userId";
 
+type LessonsType = {
+  id: string;
+  title: string;
+  videoUrl: string | null;
+  courseId: string;
+  isPublished: boolean;
+};
+type CourseType = {
+  id: string;
+  title: string;
+  imageUrl: string | null;
+  isPublished: boolean;
+  lessons: LessonsType[];
+};
 export default async function Dashboard() {
   const user = await currentUser();
-  // console.log("here", user?.id);
-  const coursesEnrolled = await GetEnrolledCourses(user);
+
+  const coursesEnrolled = await GetEnrolledCourses(user?.id);
+  let newCourseList: CourseType[] = [];
   const courses = await getPublishedCourse();
-  console.log("Here", coursesEnrolled);
+  for (let item of coursesEnrolled) {
+    newCourseList = [
+      ...newCourseList,
+      ...courses.filter((course) => course.id === item.courseId),
+    ];
+  }
+
   return (
     <main className="h-full w-full p-4">
       <section className="grid w-full items-center p-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {courses.map((course) => (
+        {newCourseList?.map((course) => (
           <CourseCard
             key={course.id}
             title={course.title}

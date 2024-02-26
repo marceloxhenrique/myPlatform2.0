@@ -68,6 +68,9 @@ export async function GET(
   const courseId = params.courseId;
   try {
     const { userId } = auth();
+    if (!userId) {
+      return NextResponse.json("Not Authorized", { status: 401 });
+    }
     const res = await Prisma.course.findUnique({
       where: {
         id: courseId,
@@ -77,9 +80,6 @@ export async function GET(
       },
     });
 
-    if (!userId) {
-      return NextResponse.json("Not Authorized", { status: 401 });
-    }
     return NextResponse.json({ course: res }, { status: 201 });
   } catch (error) {
     return NextResponse.json(

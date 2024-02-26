@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
 
-export default async function GetEnrolledCourses(userId: any) {
+export default async function GetEnrolledCourses(userId: string | undefined) {
   const course = await db.purchase.findMany({
     where: {
-      userId: userId.id,
+      userId: userId,
     },
   });
   return course;
