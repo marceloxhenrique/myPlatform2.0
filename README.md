@@ -44,10 +44,6 @@ UPLOADTHING_APP_ID=
 ```shell
 npm prisma generate
 npx prisma db push
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 ## Start the app
