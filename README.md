@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### MyPlatform is an LMS designed for creating, managing, and delivering courses online.
+
+![MyPlatform dashboard page](public/MyPlatform_Dashboard.png)
+
+MyPlatform is an LMS platform inspired by the Code With Antonio video Building a Fullstack LMS With Next.js, Prisma, and Tailwind CSS.
+Initially, I followed the course, but I realized I was just copying his code and not really learning. So, I decided to stop following the course and use the video as a reference, developing the platform by myself.
+
+During the development process, I learned a lot about Next.js, Prisma, TypeScript, Uploadthing, Tailwind CSS, Shadcn/ui, Zod, and many other things, including how to host a PostgreSQL database online and how to work with it. Initially, I used Vercel for hosting, but later switched to SupaBase for more database space.
 
 ## Getting Started
 
-First, run the development server:
+First, clone the repository
 
-```bash
-npm run dev
+```shell
+git clone https://github.com/marceloxhenrique/myPlatform2.0.git
 # or
 yarn dev
 # or
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Install packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Setup .env file
 
-## Learn More
+```js
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
 
-To learn more about Next.js, take a look at the following resources:
+DATABASE_URL=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+NEXT_PUBLIC_TEACHER_ID1=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+UPLOADTHING_SECRET=
+UPLOADTHING_APP_ID=
+```
 
-## Deploy on Vercel
+## Setup Prisma
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```shell
+npm prisma generate
+npx prisma db push
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Start the app
+
+```shell
+npm run dev
+```
