@@ -1,9 +1,9 @@
-### MyPlatform is an LMS designed for creating, managing, and delivering courses online.
+# MyPlatform is an LMS designed for creating, managing and delivering courses online.
 
 ![MyPlatform dashboard page](public/MyPlatform_Dashboard.png)
 
-MyPlatform is an LMS platform inspired by the Code With Antonio video Building a Fullstack LMS With Next.js, Prisma, and Tailwind CSS.
-Initially, I followed the course, but I realized I was just copying his code and not really learning. So, I decided to stop following the course and use the video as a reference, developing the platform by myself.
+MyPlatform is an LMS platform inspired by the Code With Antonio video [Build a Course & LMS Platform: Next 13, React, Stripe, Mux, Prisma, Tailwind, MySQL | Udemy Clone](https://www.youtube.com/watch?v=Big_aFLmekI)
+Initially, I followed the tutorial, but I realized I was just copying his code and not really learning. So, I decided to stop following the tutorial and use the video as a reference, and developing the platform by myself.
 
 During the development process, I learned a lot about Next.js, Prisma, TypeScript, Uploadthing, Tailwind CSS, Shadcn/ui, Zod, and many other things, including how to host a PostgreSQL database online and how to work with it. Initially, I used Vercel for hosting, but later switched to SupaBase for more database space.
 
@@ -13,10 +13,6 @@ First, clone the repository
 
 ```shell
 git clone https://github.com/marceloxhenrique/myPlatform2.0.git
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 ## Install packages
@@ -48,6 +44,10 @@ UPLOADTHING_APP_ID=
 ```shell
 npm prisma generate
 npx prisma db push
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
 ## Start the app
