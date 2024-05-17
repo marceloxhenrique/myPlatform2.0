@@ -3,9 +3,9 @@
 ![MyPlatform dashboard page](public/MyPlatform_Dashboard.png)
 
 MyPlatform is an LMS platform inspired by the Code With Antonio video [Build a Course & LMS Platform: Next 13, React, Stripe, Mux, Prisma, Tailwind, MySQL | Udemy Clone](https://www.youtube.com/watch?v=Big_aFLmekI)
-Initially, I followed the tutorial, but I realized I was just copying his code and not really learning. So, I decided to stop following the tutorial and use the video as a reference, and developing the platform by myself.
+Initially, I followed the tutorial, but later I decided to stop following the tutorial and use the video as a reference, and developing the platform by myself.
 
-During the development process, I learned a lot about Next.js, Prisma, TypeScript, Uploadthing, Tailwind CSS, Shadcn/ui, Zod, and many other things, including how to host a PostgreSQL database online and how to work with it. Initially, I used Vercel for hosting, but later switched to SupaBase for more database space.
+During the development process, I learned a lot about Next.js, Prisma, TypeScript, Uploadthing, Tailwind CSS, Shadcn/ui, Zod, and many other things, including how to host a PostgreSQL database online and how to work with it. Initially, I used Vercel for hosting, but later switched to SupaBase for more database storage.
 
 ## Getting Started
 
